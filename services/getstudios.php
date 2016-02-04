@@ -1,5 +1,6 @@
 <?php
-include 'config.php';
+//include 'config.php';
+include 'configRem.php';
 
 if (!isset($_GET['cat'])) $category=0 ;
 else $category = $_GET['cat'] ;

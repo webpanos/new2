@@ -1,5 +1,6 @@
 <?php
-include 'config.php';
+//include 'config.php';
+include 'configRem.php';
 
 
 /* initialize the variables   */	
