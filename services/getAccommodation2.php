@@ -32,7 +32,7 @@ try {
 			else if ($row['pArea'] ==4) $numberMaltezana++ ;
 		}
 		
-		$numOfProperties = array($numberStudios,  $numberHotels, $numberApartments, $numberHouses, $numberMaisonettes, $numberChora, $numberGialos, $numberLivadi, $numberMaltezana );
+		$numOfProperties = array($numberStudios,  $numberHotels, $numberApartments, $numberHouses, $numberMaisonettes, '', $numberChora, $numberGialos, $numberLivadi, $numberMaltezana );
 		$numOfProperties = array_values($numOfProperties); 
 
 /*	$temp =array("33", "99") ; 

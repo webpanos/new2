@@ -55,27 +55,22 @@
 
 		<!-- get and show the available studios -->
 			<script type="text/javascript">
-					var categories =[];
-					var areas =["Chora", "Gialos", "Livadi", "Maltezana"];
+					var categories =["", "Rooms - Studios", "Hotels", "Apartments", "Houses", "Maisonettes"];
+					var areas =["", "Chora", "Gialos", "Livadi", "Maltezana"];
 				
 					/* --- grap the variables from the url ----  */
-					var category = getQueryVariable("cat") ;				
+					var category = Number(getQueryVariable("cat")) ;				
+					var area = Number(getQueryVariable("area")) ;	
 			
-                    $(document).ready(function(){
+/*                    $(document).ready(function(){   */	
+					$( document ).bind( "pagecreate", function( event, data ){	
 						
-						/*  ----- get the properties categories --------   */
-                       	var url="services/getCategories.php" ;
+						
+						/*  ----- get and show the properties per category or per area --------   */						
+						if(area==0) var url="services/getstudios.php?cat=" + category;
+						if(category==0) var url="services/getstudios.php?area=" + area;
+                        
 						$.getJSON(url,function(json){
-                                $.each(json.categories,function(i,cats){
-									/* put the contents of the cats Object to the categories Array */
-									categories[cats.pCatID] = cats.pCatName ;  });
-                        });
-
-
-						
-						/*  ----- get and show the properties --------   */
-                        var url="services/getstudios.php?cat=" + category;
-                        $.getJSON(url,function(json){
             
                                 $.each(json.studios,function(i,post){
 									var catNum=Number(post.pCategory) ;
@@ -83,7 +78,7 @@
 									
                                     $("#liststudios").append(
                                         '<li data-theme="c" class="ui-li-has-thumb"><a href="#" class="ui-btn ui-btn-c">'+
-											'<img src="http://www.astypalaia.info/images' + post.pMainPhotoNew + '">'+
+											'<img src="http://www.astypalaia.mobi/images' + post.pMainPhotoNew + '">'+
                                             '<h2>'+post.pName+  '</h2>'+
                                             '<p><em>'+ categories[catNum] + ' | ' +  areas[areaNum]  +'</em></p>'+
 /*                                             '<p class="ui-li-aside"><a href="#"><span class="ui-tag" data-theme="c">'+post.pArea+'</span></a>'+
@@ -220,7 +215,7 @@
 <div data-role="footer" data-position="fixed"  data-border="false" data-theme="b">
                    <div data-role="navbar">
                        <ul>
-                           <li><a href="index.html"><i class="fa fa-home fa-fw"></i></a></li>
+                           <li><a href="index.html" data-ajax="false"><i class="fa fa-home fa-fw"></i></a></li>
                            <li><a href="#"><i class="fa fa-map-marker fa-fw"></i></a></li>
                            <li><a href="tel:0000000000"><i class="fa fa-phone fa-fw"></i></a></li>
                            <li><a href=" href="mailto:email@email""><i class="fa fa-envelope fa-fw"></i></a></li>

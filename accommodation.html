@@ -41,40 +41,33 @@
 
 		<!-- get and show the available studios -->
 			<script type="text/javascript">
-					var categories =[];
-					var areas =["Chora", "Gialos", "Livadi", "Maltezana" ];
+					var categories =["Rooms - Studios", "Hotels", "Apartments", "Houses", "Maisonettes"];
+					var areas =["", "Chora", "Gialos", "Livadi", "Maltezana" ];
 					var numberOfProperties =["panos"];
 			
-                    $(document).ready(function(){
-						
-						/*  ----- get the properties categories --------   */
-                       	var url="services/getCategories.php";
-						$.getJSON(url,function(json){
-                                $.each(json.categories,function(i,cats){ 	
-									 /*put the contents of the cats Object to the categories Array*/ 
-								 categories[cats.pCatID] = cats.pCatName ;  });
-                        }); 
-
+/*                    $(document).ready(function(){   */	
+					$( document ).bind( "pagecreate", function( event, data ){	
 						
 						/*  ----- get and show the number of properties -------
 						    ----- per category and per area       -------------   */
                         var url="services/getAccommodation2.php";
                         $.getJSON(url,function(json){
                                 $.each(json.numOfProperties,function(i,numbers){
-/*									var catNum=Number(post.pCategory) ;
-									var areaNum=Number(post.pArea) ;
-*/									i=i + 1 ;
+
 									if(i<5) {
+										var printCategory = categories[i] ;
+										i=i+1 ;
 										$("#listAccommodations").append(
 											'<li data-theme="c" class="ui-li-has-thumb">' +
-												'<a href="studios.html?cat=' + i + '" class="ui-btn ui-btn-c">'+
-												'<img src="http://www2.astypalaia.info/images/island/astypalaia-island-1.jpg' + '">'+
-												'<h2>'+  categories[i] +   '</h2>'+
+												'<a href="studios.html?cat=' + i + '" data-ajax="false" class="ui-btn ui-btn-c">'+
+												'<img src="http://www.astypalaia.mobi/images/logo2.png' + '">'+
+												'<h2>'+  printCategory +   '</h2>'+
 												'<p><em>'+ '</em></p>'+
 												'<p class="ui-li-aside">' +
 												'<span class="ui-tag" data-theme="b">' + numbers + '</span></p>' +
 											' </a></li>'
 										);
+										i=i-1;
 									} /* --- if i< 5 ----- */
 									if(i==5) {
 										 $("#listAccommodations").append(
@@ -83,11 +76,12 @@
 										 );
 									}  /* --- if i= 5 ----- */
 
-									if(i>5 & i<10) {
-										var j=i-6 ;
+									if(i>5 & i<=10) {
+										var j=i-5 ;
 										$("#listAccommodations").append(
-											'<li data-theme="c" class="ui-li-has-thumb"><a href="#" class="ui-btn ui-btn-c">'+
-												'<img src="http://www2.astypalaia.info/images/island/astypalaia-island-1.jpg' + '">'+
+											'<li data-theme="c" class="ui-li-has-thumb">' + 
+												'<a href="studios.html?area=' + j + '" data-ajax="false" class="ui-btn ui-btn-c">'+
+												'<img src="http://www.astypalaia.mobi/images/logo2.png' + '">'+
 												'<h2>'+  areas[j] +   '</h2>'+
 												'<p><em>'+ '</em></p>'+
 												'<p class="ui-li-aside">' +
@@ -226,7 +220,7 @@
 <div data-role="footer" data-position="fixed"  data-border="false" data-theme="b">
                    <div data-role="navbar">
                        <ul>
-                           <li><a href="index.html"><i class="fa fa-home fa-fw"></i></a></li>
+                           <li><a href="index.html" data-ajax="false"><i class="fa fa-home fa-fw"></i></a></li>
                            <li><a href="#"><i class="fa fa-map-marker fa-fw"></i></a></li>
                            <li><a href="tel:0000000000"><i class="fa fa-phone fa-fw"></i></a></li>
                            <li><a href=" href="mailto:email@email""><i class="fa fa-envelope fa-fw"></i></a></li>
