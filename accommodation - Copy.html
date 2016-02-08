@@ -51,11 +51,11 @@
 						/*  ----- get and show the number of properties -------
 						    ----- per category and per area       -------------   */
 //                        var url="services/getAccommodation2.php";
-// 						http://astypalaia.mobi/new2/services/getAccommodationNoDB.php
                         var url="http://astypalaia.mobi/new2/services/getAccommodationNoDB.php";
                         $.getJSON(url,function(json){
                                 $.each(json.numOfProperties,function(i,numbers){
 
+alert(numbers) ;
 									if(i<5) {
 										var printCategory = categories[i] ;
 										i=i+1 ;
